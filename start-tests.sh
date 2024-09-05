@@ -118,7 +118,9 @@ log_color "purple" "\tCYPRESS_OPTIONS_HUB_BASEDOMAIN" "\t: $CYPRESS_OPTIONS_HUB_
 log_color "purple" "\tCYPRESS_OPTIONS_HUB_OC_IDP" "\t: $CYPRESS_OPTIONS_HUB_OC_IDP"
 log_color "purple" "\tCYPRESS_OPTIONS_HUB_USER" "\t: $CYPRESS_OPTIONS_HUB_USER\n"
 
-if [[ ! -z $CYPRESS_OPTIONS_HUB_PASSWORD && "$CYPRESS_OPTIONS_HUB_PASSWORD" != "null" ]]; then
+echo -e "skip cypress var setting when UI testing skip"
+
+if [[ ! -z $CYPRESS_OPTIONS_HUB_PASSWORD && "$CYPRESS_OPTIONS_HUB_PASSWORD" != "null" && "$SKIP_UI_TEST" == "false" ]]; then
   log_color "cyan" "Logging into Kube API server."
 
   export KUBECONFIG=./kube/config/hub-kubeconfig
